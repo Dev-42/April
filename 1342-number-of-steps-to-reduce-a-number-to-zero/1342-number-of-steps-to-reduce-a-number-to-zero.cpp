@@ -2,6 +2,8 @@ class Solution {
 public:
     int numberOfSteps(int num)
     {
+        if(num == 0)
+            return num;
         int count = 0;
         while(num!=0)
         {
