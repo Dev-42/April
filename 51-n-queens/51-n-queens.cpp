@@ -1,37 +1,67 @@
 class Solution {
 public:
-    std::vector<std::vector<std::string> > solveNQueens(int n) {
-        std::vector<std::vector<std::string> > res;
-        std::vector<std::string> nQueens(n, std::string(n, '.'));
-        solveNQueens(res, nQueens, 0, n);
-        return res;
+    bool isSafe(int row,int col,vector<string> &board,int n)
+    {
+        //Checking the upper diagonal
+        int rowdup = row;
+        int coldup = col;
+        while(col>=0 && row>=0)
+        {
+            if(board[row][col] == 'Q')
+                return false;
+            col--;
+            row--;
+        }
+        //Checking the lower diagonal
+        row = rowdup;
+        col = coldup;
+        while(row<n && col>=0)
+        {
+            if(board[row][col] == 'Q')
+                return false;
+            row++;
+            col--;
+        }
+        //Checking the same row but backwards
+        col = coldup;
+        row = rowdup;
+        while(col>=0)
+        {
+            if(board[row][col] == 'Q')
+                return false;
+            col--;
+        }
+        return true;
     }
-private:
-    void solveNQueens(std::vector<std::vector<std::string> > &res, std::vector<std::string> &nQueens, int row, int &n) {
-        if (row == n) {
-            res.push_back(nQueens);
+    void solve(int col,vector<vector<string>> &ans,vector<string> &board,int n)
+    {
+        if(col == n)
+        {
+            ans.push_back(board);
             return;
         }
-        for (int col = 0; col != n; ++col)
-            if (isValid(nQueens, row, col, n)) {
-                nQueens[row][col] = 'Q';
-                solveNQueens(res, nQueens, row + 1, n);
-                nQueens[row][col] = '.';
+        
+        for(int row = 0;row<n;row++)
+        {
+            if(isSafe(row,col,board,n))
+            {
+                board[row][col] = 'Q';
+                solve(col+1,ans,board,n);
+                //backtracking
+                board[row][col] = '.';
             }
+        }
     }
-    bool isValid(std::vector<std::string> &nQueens, int row, int col, int &n) {
-        //check if the column had a queen before.
-        for (int i = 0; i != row; ++i)
-            if (nQueens[i][col] == 'Q')
-                return false;
-        //check if the 45° diagonal had a queen before.
-        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; --i, --j)
-            if (nQueens[i][j] == 'Q')
-                return false;
-        //check if the 135° diagonal had a queen before.
-        for (int i = row - 1, j = col + 1; i >= 0 && j < n; --i, ++j)
-            if (nQueens[i][j] == 'Q')
-                return false;
-        return true;
+    vector<vector<string>> solveNQueens(int n) 
+    {
+        vector<string> board(n);
+        vector<vector<string>> ans;
+        string s(n,'.');
+        for(int i=0;i<n;i++)
+        {
+            board[i] = s;
+        }
+        solve(0,ans,board,n);
+        return ans;
     }
 };
