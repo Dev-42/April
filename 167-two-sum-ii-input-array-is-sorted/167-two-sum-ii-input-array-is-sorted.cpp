@@ -4,7 +4,6 @@ public:
     {
         int n = numbers.size();
         int i = 0, j = n - 1;
-        vector<int> ans(0);
         while(i < j)
         {
             if(numbers[i] + numbers[j] > target)
