@@ -19,12 +19,13 @@ public:
         }
         ListNode* slow = head;
         ListNode* fast = head;
-        ListNode* dummy = new ListNode(-1);
-        ListNode* prev = dummy;
-        dummy -> next = head;
+        ListNode* prev = head;
         while(fast != NULL && fast->next != NULL)
         {
-            prev = prev -> next;
+            if(slow != head)
+            {
+                prev = prev -> next;
+            }
             slow = slow -> next;
             fast = fast -> next -> next;
         }
