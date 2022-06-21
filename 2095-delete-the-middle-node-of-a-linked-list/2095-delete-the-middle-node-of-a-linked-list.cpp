@@ -29,8 +29,7 @@ public:
             slow = slow -> next;
             fast = fast -> next -> next;
         }
-        ListNode* ptr = slow -> next;
-        prev -> next = ptr;
+        prev -> next = slow -> next;
         delete(slow);
         return head;
     }
