@@ -5,6 +5,8 @@
  */
 var minimumDifference = function(nums, k) {
     let res = Infinity;
+    if(k > nums.length)
+        return 0;
     nums.sort((a,b) => a - b);
     for(let i = k - 1; i < nums.length ; i++)
         {
