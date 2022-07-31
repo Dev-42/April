@@ -1,17 +1,17 @@
-class Solution {
-public:
-    int findMaxConsecutiveOnes(vector<int>& nums) 
-    {
-        int cnt = 0;
-        int maxi = 0;
-        for(int i = 0;i < nums.size(); i++)
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function(nums) {
+    let cnt = 0;
+    let maxi = 0;
+    for(let n of nums)
         {
-            if(nums[i] == 1)
+            if(n == 1)
                 cnt++;
             else
                 cnt = 0;
-            maxi = max( maxi , cnt);
+            maxi = Math.max(maxi,cnt);
         }
-        return maxi;
-    }
+    return maxi;
 };
