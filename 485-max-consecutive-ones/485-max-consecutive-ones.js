@@ -5,9 +5,9 @@
 var findMaxConsecutiveOnes = function(nums) {
     let cnt = 0;
     let maxi = 0;
-    for(let n of nums)
+    for(let i = 0 ;i<nums.length;i++)
         {
-            if(n == 1)
+            if(nums[i] == 1)
                 cnt++;
             else
                 cnt = 0;
