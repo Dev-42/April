@@ -1,20 +1,19 @@
 /**
  * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
  */
-class Solution {
-public:
-    bool checkTree(TreeNode* root) 
-    {
-        if(root -> left -> val + root -> right -> val == root -> val)
-            return true;
-        return false;
-    }
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var checkTree = function(root) {
+    let rootVal = root.val;
+    let sum = root.left.val + root.right.val;
+    if(rootVal == sum)
+        return true;
+    return false;
 };
