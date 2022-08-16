@@ -24,8 +24,10 @@ public:
             {
                 TreeNode* t=q.front();
                 q.pop();
-                if(t->left) q.push(t->left);
-                if(t->right) q.push(t->right);
+                if(t->left) 
+                    q.push(t->left);
+                if(t->right) 
+                    q.push(t->right);
                 temp+=t->val;
             }
             res.push_back((double)temp/s);
