@@ -19,7 +19,7 @@ var leafSimilar = function(root1, root2) {
             leaves.push(root.val);
         dfs(root.left,leaves);
         dfs(root.right,leaves);
-    }
+    };
     
     let leaves1 = [];
     let leaves2 = [];
