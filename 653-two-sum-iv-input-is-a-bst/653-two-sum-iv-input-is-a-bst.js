@@ -10,13 +10,12 @@ var findTarget = function(root, k) {
     inorder(root);
     let low = 0,high = arr.length - 1;
     while(low < high) {
-        let sum = arr[low] + arr[high];
-        if(sum > k) 
-            high--;
-        else if(sum < k)
-            low++;
-        else
+        if(arr[low] + arr[high] == k)
             return true;
+        else if(arr[low] + arr[high] > k) 
+            high--;
+        else if(arr[low] + arr[high] < k)
+            low++;
     }
         return false;
 };
